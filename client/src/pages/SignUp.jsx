@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {useAuth} from "../store/auth";
 
 function SignUp() {
     const [user, setUser] = useState({
@@ -8,6 +9,8 @@ function SignUp() {
         phone: "",
         password: "",
     });
+
+    const { storeTockenInLS } = useAuth();
 
     const handleInput = (e) => {
         let name = e.target.name;
@@ -36,8 +39,8 @@ function SignUp() {
             if (response.ok) {
                 const responseData = await response.json();
                 alert("registration successful");
+                storeTockenInLS(responseData.token);
                 setUser({ username: "", email: "", phone: "", password: "" });
-                console.log(responseData);
             } else {
                 console.log("error inside response ", "error");
             }

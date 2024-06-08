@@ -29,7 +29,6 @@ const userSchema = new mongoose.Schema({
 //? secure the password with the bcrypt
 userSchema.pre("save", async function () {
     const user = this;
-    console.log("actual data ", this);
 
     if (!user.isModified) {
         return next();
@@ -45,7 +44,6 @@ userSchema.pre("save", async function () {
 });
 
 userSchema.methods.generateToken = function () {
-    console.log("I am token");
     try {
         return jwt.sign(
             {

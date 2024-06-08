@@ -3,29 +3,29 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Information from "./pages/Information";
 import Quizselection from "./pages/Quizselection";
+import { Logout } from "./pages/Logout";
+import Layout from "./components/Layout";
 
 
 const App = () => {
     return (
         <>
             <BrowserRouter>
-                <Header />
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/info" element={<Information />} />
-                    <Route path="/quiz/:sub" element={<Quizselection />} />
-                    
+                    <Route path="/" element={<Layout />}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/info" element={<Information />} />
+                        <Route path="/quiz/:sub" element={<Quizselection />} />
+                        <Route path="/logout" element={<Logout />} />
+                    </Route>
                 </Routes>
-                <Footer />
             </BrowserRouter>
         </>
     );

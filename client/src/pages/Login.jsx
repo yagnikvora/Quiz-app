@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 function Login() {
     const [user, setUser] = useState({
         email: "",
         password: "",
     });
+
+    const navigate = useNavigate();
+    const { storeTockenInLS } = useAuth();
 
     const handleInput = (e) => {
         let name = e.target.name;
@@ -16,9 +20,28 @@ function Login() {
             [name]: value,
         });
     };
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                alert("Login success");
+                setUser({ email: "", password: "", })
+                storeTockenInLS(responseData.token)
+                navigate("/");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -30,12 +53,12 @@ function Login() {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="email"><strong>Email</strong></label>
-                            <input type="email" value={user.email} placeholder="Enter Email" required autoComplete="off" name="email" className="form-control rounded-0" onChange={handleInput} />
+                            <input type="email" value={user.email} placeholder="Enter Email" required name="email" className="form-control rounded-0" onChange={handleInput} />
                         </div>
 
                         <div className="mb-3">
                             <label htmlFor="password"><strong>Password</strong></label>
-                            <input type="password" value={user.password} placeholder="Enter Password" required autoComplete="off" name="password" className="form-control rounded-0" onChange={handleInput} />
+                            <input type="password" value={user.password} placeholder="Enter Password" required name="password" className="form-control rounded-0" onChange={handleInput} />
                         </div>
 
                         <button type="submit" className="btn btn-success w-100 rounded-1">Login</button>

@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import './css/Header.css';
+import { useAuth } from "../store/auth";
 
 const Header = () => {
+    const { isLoggedIn } = useAuth();
+    console.log(isLoggedIn);
     return (
         <header className="header1">
             <div className="logo">
@@ -15,9 +18,14 @@ const Header = () => {
                 </ul>
             </nav>
             <div className='cta'>
-                <NavLink to="/info" className="login-btn">Logout</NavLink>
-                <NavLink to="/login" className="login-btn">Login</NavLink>
-                <NavLink to="/signup" className="login-btn">Sign Up</NavLink>
+                {isLoggedIn ? (
+                    <NavLink to="/logout" className="login-btn">Logout</NavLink>
+                ) : (
+                    <>
+                        <NavLink to="/login" className="login-btn">Login</NavLink>
+                        <NavLink to="/signup" className="login-btn">Sign Up</NavLink>
+                    </>
+                )}
             </div>
         </header>
     );
