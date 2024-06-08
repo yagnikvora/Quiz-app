@@ -1,0 +1,158 @@
+/* src/Contact.css */
+.contact-page {
+    padding: 20px;
+    font-family: 'Arial, sans-serif';
+    color: #333;
+}
+
+.contact-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: url('../AboutBG.jpeg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
+}
+
+.contact-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.contact-hero p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.info-item {
+    text-align: center;
+}
+
+.info-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.info-item p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.contact-form-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-form-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-form-section h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #ff6f61;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #ff6f61;
+    outline: none;
+}
+
+.contact-form button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6f61;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #e55a4f;
+}
+
+.form-status {
+    margin-top: 20px;
+    color: #28a745;
+    font-size: 1.2rem;
+}
+
+.social-media {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.social-media h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.social-media h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #ff6f61;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-link {
+    font-size: 2rem;
+    color: #ff6f61;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #e55a4f;
+}

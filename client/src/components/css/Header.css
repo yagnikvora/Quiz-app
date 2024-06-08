@@ -1,0 +1,59 @@
+/* src/Header.css */
+.header1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ff6f61;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav ul li {
+    display: inline;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #ffd1c1;
+}
+
+.cta {
+    display: flex;
+    gap: 10px;
+}
+
+.signup-btn,
+.login-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #e55a4f;
+    transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover,
+.login-btn:hover {
+    background-color: #d24c44;
+}
