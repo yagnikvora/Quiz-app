@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './css/Contact.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {useAuth} from '../store/auth'
 
 const Contact = () => {
     const [contact, setContact] = useState({
@@ -10,6 +11,19 @@ const Contact = () => {
         message: "",
     });
 
+    const [userData, setUserData] = useState(true);
+
+    const {user} = useAuth();
+
+    if(userData && user){
+        setContact({
+            username: user.username,
+            email: user.email,
+            message: "",
+        })
+
+        setUserData(false);
+    }
     const handleInput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -20,10 +34,26 @@ const Contact = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(contact);
+        const response = await fetch("http://localhost:5000/api/form/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contact),
+        });
+
+        if(response.ok){
+            alert("Message sent successfully");
+            setContact({
+                username: "",
+                email: "",
+                message: "",
+            });
+            console.log(response.json());
+        }
     };
 
     return (
@@ -57,7 +87,7 @@ const Contact = () => {
                             type="text"
                             id="username"
                             name="username"
-                            value={contact.name}
+                            value={contact.username}
                             onChange={handleInput}
                             required
                         />

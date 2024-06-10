@@ -49,9 +49,16 @@ const login = async (req, res) => {
         }
     }catch(error){
         console.error(error);
-
     }
 }
 
+const user = async (req,res)=>{
+    try {
+        const userData = req.user;
+        return res.status(200).json({userData});
+    } catch (error) {
+        console.log("Error from user root",error);
+    }
+}
 
-module.exports = { home, register , login};
+module.exports = { home, register, login, user };

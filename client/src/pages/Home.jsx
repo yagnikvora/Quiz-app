@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import "./css/Home.css"
+import {useAuth} from '../store/auth';
 
 function Home(){
+    const {user} = useAuth();
     return (<div className="homepage">
         <header className="header">
+            <h3>Hello, {user.username}</h3>
             <h1>Welcome to QuizMaster</h1>
             <p>Your ultimate destination for fun and challenging quizzes!</p>
             {/* <Link to="/quizzes" className="start-btn">Start Quiz</Link> */}

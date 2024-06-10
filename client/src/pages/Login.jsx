@@ -7,7 +7,6 @@ function Login() {
         email: "",
         password: "",
     });
-
     const navigate = useNavigate();
     const { storeTockenInLS } = useAuth();
 
@@ -32,13 +31,16 @@ function Login() {
                 body: JSON.stringify(user),
             });
 
+            const responseData = await response.json();
             if (response.ok) {
-                const responseData = await response.json();
                 alert("Login success");
                 setUser({ email: "", password: "", })
                 storeTockenInLS(responseData.token)
                 navigate("/");
             }
+            else
+                alert(responseData.extraDetails[0]);
+
         } catch (error) {
             console.log(error);
         }

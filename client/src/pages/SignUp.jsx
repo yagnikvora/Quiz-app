@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useAuth} from "../store/auth";
 
 function SignUp() {
@@ -9,6 +9,8 @@ function SignUp() {
         phone: "",
         password: "",
     });
+
+    const navigate = useNavigate();
 
     const { storeTockenInLS } = useAuth();
 
@@ -34,15 +36,16 @@ function SignUp() {
                 },
                 body: JSON.stringify(user),
             });
-            console.log("response data : ", response);
+
+            const responseData = await response.json();
 
             if (response.ok) {
-                const responseData = await response.json();
                 alert("registration successful");
                 storeTockenInLS(responseData.token);
                 setUser({ username: "", email: "", phone: "", password: "" });
+                navigate("/");
             } else {
-                console.log("error inside response ", "error");
+                alert(responseData.extraDetails[0]);
             }
         } catch (error) {
             console.error("Error", error);
@@ -67,7 +70,7 @@ function SignUp() {
 
                         <div className="mb-3">
                             <label htmlFor="phone"><strong>Phone </strong></label>
-                            <input type="number" value={user.phone}  placeholder="Enter Phone no" required name="phone" className="form-control rounded-0" onChange={handleInput} />
+                            <input type="number" maxLength="10" value={user.phone}  placeholder="Enter Phone no" required name="phone" className="form-control rounded-0" onChange={handleInput} />
                         </div>
 
                         <div className="mb-3">

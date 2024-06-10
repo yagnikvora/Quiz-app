@@ -3,7 +3,7 @@ import './css/Footer.css'; // Import CSS for styling
 
 const Footer = () => {
     return (
-        <footer className="footer-container">
+        <footer className="footer-container px-3">
             <div className="footer-content">
                 <div className="footer-left">
                     <h3>QuizMaster</h3>
