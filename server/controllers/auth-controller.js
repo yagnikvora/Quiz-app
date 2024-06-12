@@ -18,12 +18,12 @@ const register = async (req, res) => {
         const userExist = await User.findOne({ email: email });
 
         if (userExist) {
-            return res.status(400).json({ msg: "email already exists" });
+            return res.status(400).json({ message: "email already exists" });
         }
 
         const userCreated = await User.create({ username, email, phone, password });
 
-        res.status(201).json({ msg: "Registration successful", token: await userCreated.generateToken(), userId: userCreated._id.toString() });
+        res.status(201).json({ message: "Registration successful", token: await userCreated.generateToken(), userId: userCreated._id.toString() });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -37,15 +37,15 @@ const login = async (req, res) => {
         const userExist = await User.findOne({ email });
 
         if (!userExist) {
-            return res.status(400).json({ msg: "Invalid credentials" });
+            return res.status(400).json({ message: "Invalid credentials" });
         }
 
         const user = await userExist.comparePassword(password);
         
         if(user){
-            res.status(200).json({ msg: "Login successful", token: await userExist.generateToken(), userId: userExist._id.toString() });
+            res.status(200).json({ message: "Login successful", token: await userExist.generateToken(), userId: userExist._id.toString() });
         }else{
-            return res.status(401).json({ msg: "Invalid credentials" });
+            return res.status(401).json({ message: "Invalid credentials" });
         }
     }catch(error){
         console.error(error);

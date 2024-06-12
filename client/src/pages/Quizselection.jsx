@@ -1,41 +1,47 @@
 import { useState } from 'react';
-import './css/Quiz.css';
+import './css/Quizselection.css';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Quizselection = () => {
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const questions = [
-        {
-            question: "What is the capital of France?",
-            options: ["Paris", "Berlin", "London", "Madrid"],
-            correctAnswer: "Paris"
-        },
-    ];
-
-    const nextQuestion = () => {
-        setCurrentQuestion(currentQuestion + 1);
-    };
-
-    const prevQuestion = () => {
-        setCurrentQuestion(currentQuestion - 1);
-    };
+    const [subject, setSubject] = useState('java');
+    const [numQuestions, setNumQuestions] = useState(0);
+    const navigate = useNavigate();
 
     return (
-        <div className="quiz-container">
-            {/* Display question */}
-            <h2>{questions[currentQuestion].question}</h2>
-
-            {/* Display options */}
-            <div className="options">
-                {questions[currentQuestion].options.map((option, index) => (
-                    <div key={index} className="option">{option}</div>
-                ))}
-            </div>
-
-            {/* Navigation arrows */}
-            <div className="navigation">
-                {currentQuestion > 0 && <button onClick={prevQuestion}>Previous</button>}
-                {currentQuestion < questions.length - 1 && <button onClick={nextQuestion}>Next</button>}
-            </div>
+        <div className="quiz-selection-container bg-dark">
+            <form className="quiz-selection-form">
+                <h2>Select Quiz</h2>
+                <div className="form-group">
+                    <label htmlFor="subject">Subject:</label>
+                    <select
+                        id="subject"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                    >
+                        <option value="java">Java</option>
+                        <option value="python">Python</option>
+                        <option value="data-structure">Data Structure</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="numQuestions">Number of Questions:</label>
+                    <input
+                        type="number"
+                        id="numQuestions"
+                        value={numQuestions}
+                        onChange={(e) => setNumQuestions(e.target.value)}
+                    />
+                </div>
+                <button onClick={(e) => {
+                    e.preventDefault();
+                    if (parseInt(numQuestions) > 30 || parseInt(numQuestions) <= 4) {
+                        toast.warn("No of Quiestions mst bbetween 5 to 30");
+                    } else {
+                        navigate("/quiz/" + subject + "/" + numQuestions);
+                    }
+                }} className="btn button">Start Quiz</button>
+            </form>
         </div>
     );
 };

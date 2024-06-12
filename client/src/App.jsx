@@ -8,6 +8,7 @@ import Information from "./pages/Information";
 import Quizselection from "./pages/Quizselection";
 import { Logout } from "./pages/Logout";
 import Layout from "./components/Layout";
+import Quizdisplay from "./pages/Quizdisplay";
 
 
 const App = () => {
@@ -19,11 +20,14 @@ const App = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/quiz-selection" element={<Quizselection />} />
+                        <Route path="/logout" element={<Logout />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/info" element={<Information />} />
-                        <Route path="/quiz/:sub" element={<Quizselection />} />
-                        <Route path="/logout" element={<Logout />} />
+                        <Route path="/quiz/:sub/:que" element={<Quizdisplay />} />
+
+                        <Route path="*" element={<h1 className="d-flex justify-content-center align-items-center bg-dark vh-100 text-white">Page not found</h1>} />
                     </Route>
                 </Routes>
             </BrowserRouter>

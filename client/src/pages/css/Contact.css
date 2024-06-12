@@ -3,6 +3,7 @@
     padding: 20px;
     font-family: 'Arial, sans-serif';
     color: #333;
+        background: linear-gradient(to right, #f7f8f8, #acbb78);
 }
 
 .contact-hero {
