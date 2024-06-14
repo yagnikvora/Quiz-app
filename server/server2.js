@@ -10,7 +10,6 @@ const corsOptions = {
 };
 const app = express();
 const URI = "mongodb+srv://23010101661:yagnik123@yagnik.sc2rkml.mongodb.net/Quiz?retryWrites=true&w=majority";
-
 app.use(cors(corsOptions));
 app.use(express.json());
 
