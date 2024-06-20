@@ -1,5 +1,6 @@
 const User = require("../models/user-model");
 const Contact = require("../models/contact-model");
+const jwt = require('jsonwebtoken');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -9,7 +10,7 @@ const getAllUsers = async (req, res) => {
         }
         return res.status(200).json(users);
     } catch (error) {
-        next(error);
+        console.log(error);
     }
 };
 
@@ -19,7 +20,7 @@ const getUserById = async (req, res) => {
         const data = await User.findOne({ _id: id }, { password: 0 });
         return res.status(200).json(data);
     } catch (error) {
-        next(error);
+        console.log(error);
     }
 };
 
@@ -36,17 +37,24 @@ const updateUserById = async (req, res) => {
         );
         return res.status(200).json(updatedData);
     } catch (error) {
-        next(error);
+        console.log(error);
     }
 };
 
 const deleteUserById = async (req, res) => {
     try {
         const id = req.params.id;
-        await User.deleteOne({ _id: id });
-        return res.status(200).json({ message: "User Deleted Successfully" });
+        const data = req.user;
+        console.log("user   ",data._id.toString());
+        console.log("params  ",id);
+        if(id == data._id.toString()){
+            return res.status(401).json({ message: "You cannot delete yourself" });
+        }else{
+            await User.deleteOne({ _id: id });
+            return res.status(200).json({ message: "User Deleted Successfully" });
+        }
     } catch (error) {
-        next(error);
+        console.log(error);
     }
 };
 
@@ -58,7 +66,7 @@ const getAllContacts = async (req, res) => {
         }
         return res.status(200).json(contacts);
     } catch (error) {
-        next(error);
+        console.log(error);
     }
 };
 
@@ -68,7 +76,7 @@ const deleteContactById = async (req, res) => {
         await Contact.deleteOne({ _id: id });
         return res.status(200).json({ message: "Contact Deleted Successfully" });
     } catch (error) {
-        next(error);
+        console.log(error);
     }
 };
 

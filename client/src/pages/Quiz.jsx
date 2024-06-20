@@ -57,20 +57,6 @@ export const Quiz = () => {
 
         }
     }
-    // {
-    //     showDeleteDialog && (
-    //         <div className="company-overlay">
-    //             <div className="company-confirmation-dialog">
-    //                 <h2>Confirm Deletion</h2>
-    //                 <p>Are you sure you want to delete your account?</p>
-    //                 <div className="company-buttons">
-    //                     <button onClick={confirmDelete}>Yes</button>
-    //                     <button onClick={cancelDelete}>No</button>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     )
-    // }
     if(data.length > 0){
         return (
             < div className="container" >

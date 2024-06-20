@@ -37,8 +37,9 @@ function Login() {
             if (response.ok) {
                 toast.success("Login success");
                 setUser({ email: "", password: "", })
-                storeTockenInLS(responseData.token)
+                storeTockenInLS(responseData.token);
                 navigate("/");
+                window.location.reload();
             }
             else
                 toast.error(responseData.extraDetails ? responseData.extraDetails[0] : responseData.message);

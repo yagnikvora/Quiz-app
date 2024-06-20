@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { useAuth } from '../store/auth'
 import { Navigate } from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 const Contact = () => {
     const [contact, setContact] = useState({
@@ -47,7 +48,7 @@ const Contact = () => {
         });
 
         if (response.ok) {
-            alert("Message sent successfully");
+            toast.success("Message sent successfully");
             setContact({
                 username: "",
                 email: "",

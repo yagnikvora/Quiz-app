@@ -1,7 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import "./css/Home.css"
 import { useAuth } from '../store/auth';
-
 function Home() {
     const { user, isLoggedIn } = useAuth();
     if (!isLoggedIn) {
@@ -14,11 +13,7 @@ function Home() {
                     <h1>Welcome to QuizMaster</h1>
                     <p>Your ultimate destination for fun and challenging quizzes!</p>
                     <Link to="/quiz-selection" className="start-btn">Start Quiz</Link>
-                
-                        {/* <Link to="/quiz-selection">
-                            Start Quiz
-                        </Link>
-                    </div> */}
+        
                 </header>
                 <section className="features">
                     <div className="feature">

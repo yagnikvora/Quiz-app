@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const authorizationToken = `Bearer ${token}`;
-
+    
 
     const storeTockenInLS = (serverTocken) => {
         localStorage.setItem('token', serverTocken);
@@ -15,13 +15,18 @@ export const AuthProvider = ({ children }) => {
 
     let isLoggedIn = token ? true : false;
 
+    const [user, setUser] = useState({});
 
     const logoutUser = () => {
-        setToken("");
-        return localStorage.removeItem('token');
+        try {
+            setToken("");
+            setUser({});
+            return localStorage.removeItem('token');
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    const [user, setUser] = useState("");
 
     const userAuthentication = async () => {
         try {
@@ -43,13 +48,25 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const fetchData = async (subject) =>{
+        try {
+            const response = await fetch("http://localhost:5001/quiz/"+subject)
+            if(response.ok){
+                const data = await response.json();
+                return data;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         userAuthentication();
     }, []);
 
 
     return (
-        <AuthContext.Provider value={{ storeTockenInLS, authorizationToken, isLoggedIn, logoutUser, user }}>
+        <AuthContext.Provider value={{ storeTockenInLS, authorizationToken, isLoggedIn, logoutUser, user, fetchData }}>
             {children}
         </AuthContext.Provider>
     );
@@ -62,3 +79,5 @@ export const useAuth = () => {
     }
     return authContextValue;
 }
+
+

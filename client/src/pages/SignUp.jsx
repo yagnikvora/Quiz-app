@@ -28,8 +28,6 @@ function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
-
         try {
             const response = await fetch("http://localhost:5000/api/auth/register", {
                 method: "POST",
@@ -44,6 +42,7 @@ function SignUp() {
             if (response.ok) {
                 toast.success("SignUp and Login successful");
                 storeTockenInLS(responseData.token);
+                window.location.reload();
                 setUser({ username: "", email: "", phone: "", password: "" });
                 navigate("/");
             } else {
