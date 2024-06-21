@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "concurrently \"npm run start-login\" \"npm run start-quiz\" \"npm run dev\"",
+    "start-login": "nodemon ../server/server.js",
+    "start-quiz": "nodemon ../server/server2.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

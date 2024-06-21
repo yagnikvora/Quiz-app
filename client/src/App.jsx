@@ -15,7 +15,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { AdminUpdate } from "./pages/AdminUpdate";
 // import AdminQuiz from "./pages/AdminQuiz";
-import Demo from "./pages/css/Demo";
+import Demo from "./pages/Demo";
+import Updatequiz from "./pages/Updatequiz";
 
 
 const App = () => {
@@ -38,6 +39,8 @@ const App = () => {
                         <Route path="users/edit/:id" element={<AdminUpdate />}/>
                         <Route path="contacts" element={<AdminContacts />}/>
                         <Route path="quiz" element={<Demo />}/>
+                        <Route path="quiz/:sub/:id" element={<Updatequiz />}/>
+                        <Route path="quiz/:sub" element={<Updatequiz />}/>
                     </Route>
                     <Route path="*" element={<h1 className="d-flex justify-content-center align-items-center bg-dark vh-100 text-white">Page not found</h1>} />
                 </Routes>

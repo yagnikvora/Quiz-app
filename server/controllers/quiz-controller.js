@@ -25,6 +25,30 @@ const quiz = async (req, res) => {
     }
 };
 
+const getByIdQuiz = async(req,res) => {
+    try {
+        const subject = req.params.sub;
+        const id = req.params.id;
+        let data;
+        if (subject === "java")
+            data = await Java.findOne({ _id: id });
+        else if (subject === "python")
+            data = await Python.findOne({ _id: id });
+        else if (subject === "ds")
+            data = await Ds.findOne({ _id: id });
+        else
+        return res.status(404).json({ message: "subject not found" });
+    
+        if (!data)
+            return res.status(400).json({ message: "No Questions found" });
+        
+        return res.status(201).json(data);
+        
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 const getAllQuiz = async (req,res)=>{
     try {
         const subject = req.params.sub;
@@ -122,4 +146,4 @@ const insertQuiz = async (req, res) => {
     }
 }
 
-module.exports = { quiz, getAllQuiz, deleteQuizById, updateQuizById, insertQuiz };
+module.exports = { quiz, getAllQuiz, deleteQuizById, updateQuizById, insertQuiz, getByIdQuiz };

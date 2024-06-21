@@ -1,14 +1,19 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { useAuth } from "../../store/auth"
-import "../css/Adminquiz.css"
-import { Link } from "react-router-dom";
+import { useAuth } from "../store/auth"
+import "./css/Adminquiz.css"
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Demo = () => {
     const { fetchData } = useAuth();
+    const navigate = useNavigate();
 
     const [subject, setSubject] = useState("java");
     const [quiz, setQuiz] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+
 
     useEffect(() => {
         fetchData(subject)
@@ -18,34 +23,33 @@ const Demo = () => {
             });
     }, [subject]);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const recordsPerPage = 10;
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const records = quiz.slice(indexOfFirstRecord, indexOfLastRecord);
-
-    const npages = Math.ceil(quiz.length / recordsPerPage);
-    const numbers = [...Array(npages + 1).keys()].slice(1);
-
-    const nextPage = () => {
-        if (currentPage !== npages) {
-            setCurrentPage(currentPage + 1);
-        }
-    }
-    const prePage = () => {
-        if(currentPage !== 1){
-            setCurrentPage(currentPage - 1);
-        }
-
-    }
-    const changeCurrentPage = (number) => {
-        setCurrentPage(number);
-    }
 
 
     if (loading) {
         return <h1 className="text-center">Loading...</h1>
     } else {
+        const recordsPerPage = 10;
+        const indexOfLastRecord = currentPage * recordsPerPage;
+        const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+        let records = quiz.slice(indexOfFirstRecord, indexOfLastRecord);
+
+        const npages = Math.ceil(quiz.length / recordsPerPage);
+        const numbers = [...Array(npages + 1).keys()].slice(1);
+
+        const nextPage = () => {
+            if (currentPage !== npages) {
+                setCurrentPage(currentPage + 1);
+            }
+        }
+        const prePage = () => {
+            if (currentPage !== 1) {
+                setCurrentPage(currentPage - 1);
+            }
+
+        }
+        const changeCurrentPage = (number) => {
+            setCurrentPage(number);
+        }
         return (
             <>
                 < div className="container" >
@@ -62,11 +66,11 @@ const Demo = () => {
                         </div>
                     </div>
                     <div className="text-center">
-                        <Link className="btn btn-info mb-5">Add Quiz</Link>
+                        <Link className="btn btn-info mb-5" to={`/admin/quiz/${subject}/`}>Add Quiz</Link>
                         {records.map((q, index) => {
                             return (
                                 <>
-                                    <div key={index}>
+                                    <div>
                                         <h3> {q.question}</h3>
                                         <ul>
                                             <li> 1:  {q.option1}</li>
@@ -75,8 +79,27 @@ const Demo = () => {
                                             <li> 4:  {q.option4}</li>
                                         </ul>
                                         <p className="fw-bold h5">Correct option: {q.correctOption}</p>
-                                        <Link className="btn btn-danger mx-3 ms-0">Delete</Link>
-                                        <Link className="btn btn-warning">Edit</Link>
+                                        <Link className="btn btn-danger mx-3 ms-0" onClick={()=>{
+                                            try {
+                                                fetch(`http://localhost:5001/quiz/${subject}/${q._id}`, {
+                                                    method: "DELETE",
+                                                    headers: {
+                                                        "Content-Type": "application/json"
+                                                    }
+                                                })
+                                                    .then(res => res.json())
+                                                    .then(res => {
+                                                        setQuiz(quiz.filter(qz => qz._id !== q._id))
+                                                        toast.success("Quiz Deleted Success")
+                                                    })
+                                                    .catch(err => {
+                                                        toast.error(err.message);
+                                                    }) 
+                                            } catch (error) {
+                                                toast.error(error.message);
+                                            }
+                                        }}>Delete</Link>
+                                        <Link className="btn btn-warning" to={`/admin/quiz/${subject}/${q._id}`}>Edit</Link>
 
                                         <hr />
                                     </div>
@@ -103,7 +126,7 @@ const Demo = () => {
                             </li>
                         </ul>
                     </nav>
-                   
+
                 </div >
             </>
         )

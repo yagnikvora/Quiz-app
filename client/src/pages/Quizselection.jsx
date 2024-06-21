@@ -10,7 +10,7 @@ const Quizselection = () => {
     // const [data , setData] = useState([]);
     const navigate = useNavigate();
 
-    let url = "http://localhost:5001/quiz/" + subject + "/" + numQuestions;
+    let url = "http://localhost:5001/quiz/select/" + subject + "/" + numQuestions;
 
     if (subject === "data-structure") {
         setSubject("ds");
