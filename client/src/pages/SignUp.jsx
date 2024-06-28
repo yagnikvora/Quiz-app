@@ -42,7 +42,7 @@ function SignUp() {
             if (response.ok) {
                 toast.success("SignUp and Login successful");
                 storeTockenInLS(responseData.token);
-                window.location.reload();
+                // window.location.reload();
                 setUser({ username: "", email: "", phone: "", password: "" });
                 navigate("/");
             } else {

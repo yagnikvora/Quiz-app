@@ -14,9 +14,8 @@ import { AdminContacts } from "./pages/AdminContacta";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { AdminUpdate } from "./pages/AdminUpdate";
-// import AdminQuiz from "./pages/AdminQuiz";
-import Demo from "./pages/Demo";
 import Updatequiz from "./pages/Updatequiz";
+import AdminQuiz from "./pages/AdminQuiz";
 
 
 const App = () => {
@@ -38,7 +37,7 @@ const App = () => {
                         <Route path="users" element={<AdminUsers />}/>
                         <Route path="users/edit/:id" element={<AdminUpdate />}/>
                         <Route path="contacts" element={<AdminContacts />}/>
-                        <Route path="quiz" element={<Demo />}/>
+                        <Route path="quiz" element={<AdminQuiz />}/>
                         <Route path="quiz/:sub/:id" element={<Updatequiz />}/>
                         <Route path="quiz/:sub" element={<Updatequiz />}/>
                     </Route>

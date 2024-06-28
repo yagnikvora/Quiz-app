@@ -75,60 +75,54 @@ export const AdminUpdate = () => {
     };
 
     return (
-        <section className="section-contact">
-            <div className="contact-content container">
-                <h1 className="main-heading">Update User Data</h1>
-            </div>
-            {/* contact page main  */}
-            <div className="container grid grid-two-cols">
-                {/* contact form content actual  */}
-                <section className="section-form">
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="username">username</label>
-                            <input
-                                type="text"
-                                name="username"
-                                id="username"
-                                autoComplete="off"
-                                value={data.username}
-                                onChange={handleInput}
-                                required
-                            />
-                        </div>
+        <div className="container-fluid">
+            <h1 className="main-heading">Update User Data</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group row mt-5">
+                    <label htmlFor="username" className="col-1 d-inline">username</label>
+                    <input
+                        className="col mx-5 form-input d-inline"
+                        type="text"
+                        name="username"
+                        id="username"
+                        autoComplete="off"
+                        value={data.username}
+                        onChange={handleInput}
+                        required
+                    />
+                </div>
 
-                        <div>
-                            <label htmlFor="email">email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                autoComplete="off"
-                                value={data.email}
-                                onChange={handleInput}
-                                required
-                            />
-                        </div>
+                <div className="form-group row">
+                    <label htmlFor="email" className="col-1 d-inline">email</label>
+                    <input
+                        className="col mx-5 form-input d-inline"
+                        type="email"
+                        name="email"
+                        id="email"
+                        autoComplete="off"
+                        value={data.email}
+                        onChange={handleInput}
+                        required
+                    />
+                </div>
 
-                        <div>
-                            <label htmlFor="phone">Mobile</label>
-                            <input
-                                type="phone"
-                                name="phone"
-                                id="phone"
-                                autoComplete="off"
-                                value={data.phone}
-                                onChange={handleInput}
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <button type="submit">Update</button>
-                        </div>
-                    </form>
-                </section>
-            </div>
-        </section>
+                <div className="form-group row">
+                    <label htmlFor="phone" className="col-1 d-inline">Mobile</label>
+                    <input
+                        className="col mx-5 form-input d-inline"
+                        type="phone"
+                        name="phone"
+                        id="phone"
+                        autoComplete="off"
+                        value={data.phone}
+                        onChange={handleInput}
+                        required
+                    />
+                </div>
+                <div className="m-3" >
+                    <button className="btn btn-success" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
     );
 };

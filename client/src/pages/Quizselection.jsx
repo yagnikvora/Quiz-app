@@ -43,15 +43,15 @@ const Quizselection = () => {
                 </div>
                 <button onClick={async (e) => {
                     e.preventDefault();
-                    if (parseInt(numQuestions) > 30 || parseInt(numQuestions) <= 4) {
-                        toast.warn("No of Quiestions must between 5 to 30");
+                    if (parseInt(numQuestions) <= 4) {
+                        toast.warn("No of Quiestions must be more than 5");
                     } else {
                         await fetch(url)
-                        .then(res => res.json())
-                        .then(res=>{
-                            data = res;
-                            console.log(data);
-                        });
+                            .then(res => res.json())
+                            .then(res => {
+                                data = res;
+                                console.log(data);
+                            });
                         navigate("/quiz/" + subject + "/" + numQuestions);
                     }
                 }} className="btn button">Start Quiz</button>
@@ -61,4 +61,4 @@ const Quizselection = () => {
 };
 
 export { Quizselection };
-export {data};
+export { data };

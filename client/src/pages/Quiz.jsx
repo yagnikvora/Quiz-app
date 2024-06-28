@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import './css/Quiz.css';
 import { data } from "./Quizselection";
+import { toast } from "react-toastify";
 export const Quiz = () => {
 
     const params = useParams();
@@ -54,7 +55,9 @@ export const Quiz = () => {
                 op.current.classList.remove('wrong');
                 return null;
             })
-
+        }
+        else{
+            toast.warn("Plese select any one option");
         }
     }
     if(data.length > 0){
