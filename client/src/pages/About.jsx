@@ -35,22 +35,28 @@ const About = () => {
                     <h2>Meet the Team</h2>
                     <div className="team-members">
                         <div className="team-member">
-                            <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/483.jpg" alt="Team Member" />
+                            {/* <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/483.jpg" alt="Team Member" /> */}
+                            <img src="src\assets\m-4.jpg" alt="Team Member" />
                             <h3>John Doe</h3>
                             <p>Founder & CEO</p>
                         </div>
                         <div className="team-member">
-                            <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/589.jpg" alt="Team Member" />
+                            {/* <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/589.jpg" alt="Team Member" /> */}
+                            <img src="src\assets\m-2.jpg" alt="Team Member" />
+                            
                             <h3>Jane Smith</h3>
                             <p>Chief Officer</p>
                         </div>
                         <div className="team-member">
-                            <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/489.jpg" alt="Team Member" />
+                            {/* <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/489.jpg" alt="Team Member" /> */}
+                            <img src="src\assets\m-3.jpg" alt="Team Member" />
+                            
                             <h3>Sam Wilson</h3>
                             <p>Lead Developer</p>
                         </div>
                         <div className="team-member">
-                            <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/490.jpg" alt="Team Member" />
+                            {/* <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/490.jpg" alt="Team Member" /> */}
+                            <img src="src\assets\m-1.jpg" alt="Team Member" />
                             <h3>Emily Johnson</h3>
                             <p>Marketing Manager</p>
                         </div>

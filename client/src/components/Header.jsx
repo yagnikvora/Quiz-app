@@ -15,7 +15,7 @@ const Header = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    {isLoggedIn ? <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                         </li>
@@ -25,7 +25,7 @@ const Header = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="./contact" aria-disabled="true">Contact</Link>
                         </li>
-                    </ul>
+                    </ul> : <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>}
                     <div className='cta'>
                             {user.isAdmin ? <NavLink to="/admin" className="login-btn">Admin Deshboard</NavLink> : <></>}
                              {isLoggedIn ? (

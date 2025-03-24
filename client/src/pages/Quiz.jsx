@@ -67,7 +67,7 @@ export const Quiz = () => {
                 <hr />
                 {
                     result ? <>
-                        <h2>Your Score is {score} from {data.length}</h2>
+                        <h2>Your Score is {score} out of {data.length}</h2>
                         <button onClick={() => {
                             navigate("/quiz-selection");
                         }}>Reset</button>

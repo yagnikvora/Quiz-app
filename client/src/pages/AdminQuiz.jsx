@@ -79,22 +79,26 @@ const AdminQuiz = () => {
                                             <li> 4:  {q.option4}</li>
                                         </ul>
                                         <p className="fw-bold h5">Correct option: {q.correctOption}</p>
-                                        <Link className="btn btn-danger mx-3 ms-0" onClick={()=>{
+                                        <Link className="btn btn-danger mx-3 ms-0" onClick={() => {
                                             try {
-                                                fetch(`http://localhost:5001/quiz/${subject}/${q._id}`, {
-                                                    method: "DELETE",
-                                                    headers: {
-                                                        "Content-Type": "application/json"
-                                                    }
-                                                })
-                                                    .then(res => res.json())
-                                                    .then(res => {
-                                                        setQuiz(quiz.filter(qz => qz._id !== q._id))
-                                                        toast.success("Quiz Deleted Success")
+                                                if (confirm("Are you want to delete")) {
+
+
+                                                    fetch(`http://localhost:5001/quiz/${subject}/${q._id}`, {
+                                                        method: "DELETE",
+                                                        headers: {
+                                                            "Content-Type": "application/json"
+                                                        }
                                                     })
-                                                    .catch(err => {
-                                                        toast.error(err.message);
-                                                    }) 
+                                                        .then(res => res.json())
+                                                        .then(res => {
+                                                            setQuiz(quiz.filter(qz => qz._id !== q._id))
+                                                            toast.success("Quiz Deleted Success")
+                                                        })
+                                                        .catch(err => {
+                                                            toast.error(err.message);
+                                                        })
+                                                }
                                             } catch (error) {
                                                 toast.error(error.message);
                                             }

@@ -25,18 +25,22 @@ export const AdminContacts = () => {
 
     const deleteContactById = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/contacts/delete/${id}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: authorizationToken,
-                },
-            });
-            toast.success(response.ok)
-            if (response.ok) {
-                setContactData(contactData.filter(contact => contact._id !== id))
-                toast.success("deleted successfully");
-            } else {
-                toast.error("Not Deleted ");
+            if (confirm("Are want to delete")) {
+
+
+                const response = await fetch(`http://localhost:5000/api/admin/contacts/delete/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: authorizationToken,
+                    },
+                });
+                toast.success(response.ok)
+                if (response.ok) {
+                    setContactData(contactData.filter(contact => contact._id !== id))
+                    toast.success("deleted successfully");
+                } else {
+                    toast.error("Not Deleted ");
+                }
             }
         } catch (error) {
             console.log(error);

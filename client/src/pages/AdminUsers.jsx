@@ -26,18 +26,22 @@ export const AdminUsers = () => {
 
     const deleteUser = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: authorizationToken,
-                },
-            });
+            if (confirm("Are you want to delete")) {
 
-            if (response.ok) {
-                toast.success("User deleted successfully")
-                getAllUsersData();
-            }else{
-                toast.error("You can not delete yourself")
+
+                const response = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: authorizationToken,
+                    },
+                });
+
+                if (response.ok) {
+                    toast.success("User deleted successfully")
+                    getAllUsersData();
+                } else {
+                    toast.error("You can not delete yourself")
+                }
             }
         } catch (error) {
             console.log(error);
@@ -68,12 +72,12 @@ export const AdminUsers = () => {
                         <tbody>
                             {users.map((curUser, index) => {
                                 return (
-                                    <tr  key={index}>
+                                    <tr key={index}>
                                         <td>{curUser.username}</td>
                                         <td>{curUser.email}</td>
                                         <td>{curUser.phone}</td>
                                         <td>
-                                            <Link className="btn btn-warning "  to={`/admin/users/edit/${curUser._id}`}>Edit</Link>
+                                            <Link className="btn btn-warning " to={`/admin/users/edit/${curUser._id}`}>Edit</Link>
                                         </td>
                                         <td>
                                             <Link

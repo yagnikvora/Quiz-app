@@ -50,8 +50,8 @@ const Contact = () => {
         if (response.ok) {
             toast.success("Message sent successfully");
             setContact({
-                username: "",
-                email: "",
+                username: user.username,
+                email: user.email,
                 message: "",
             });
             console.log(response.json());
