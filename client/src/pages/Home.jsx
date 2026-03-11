@@ -1,8 +1,18 @@
 import { Link, Navigate } from "react-router-dom";
 import "./css/Home.css"
 import { useAuth } from '../store/auth';
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 function Home() {
     const { user, isLoggedIn } = useAuth();
+    useEffect(() => {
+        if (sessionStorage.getItem("showToastAfterReload") === "true") {
+            toast.success("Login successful");
+            setTimeout(() => {
+                sessionStorage.removeItem("showToastAfterReload");
+            }, 1000);
+        }
+    }, []);
     if (!isLoggedIn) {
         return <Navigate to="/info" />;
     } else {
@@ -13,7 +23,7 @@ function Home() {
                     <h1>Welcome to QuizMaster</h1>
                     <p>Your ultimate destination for fun and challenging quizzes!</p>
                     <Link to="/quiz-selection" className="start-btn">Start Quiz</Link>
-        
+
                 </header>
                 <section className="features">
                     <div className="feature">

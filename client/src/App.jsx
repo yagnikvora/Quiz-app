@@ -17,7 +17,6 @@ import { AdminUpdate } from "./pages/AdminUpdate";
 import Updatequiz from "./pages/Updatequiz";
 import AdminQuiz from "./pages/AdminQuiz";
 
-
 const App = () => {
     return (
         <>

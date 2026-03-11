@@ -1,5 +1,5 @@
 
-import './css/Footer.css'; // Import CSS for styling
+import './css/Footer.css';
 
 const Footer = () => {
     return (
@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="footer-left">
                     <h3>QuizMaster</h3>
                     <p>A platform for interactive learning</p>
-                    <p>Copyright &copy; 2024</p>
+                    <p>Copyrights &copy;2025</p>
                 </div>
                 <div className="footer-right">
                     <ul>

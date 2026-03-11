@@ -83,6 +83,8 @@ export const Quiz = () => {
                             <div className="index">{index + 1} of {data.length} Question</div></>
                 }
             </div >
+        
+
         )
     }else{
         return <Navigate to="/quiz-selection" />

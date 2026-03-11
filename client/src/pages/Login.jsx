@@ -34,8 +34,9 @@ function Login() {
             });
 
             const responseData = await response.json();
+
             if (response.ok) {
-                toast.success("Login success");
+                sessionStorage.setItem("showToastAfterReload", "true");
                 setUser({ email: "", password: "", })
                 storeTockenInLS(responseData.token);
                 navigate("/");

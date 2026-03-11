@@ -40,11 +40,11 @@ function SignUp() {
             const responseData = await response.json();
 
             if (response.ok) {
-                toast.success("SignUp and Login successful");
+                sessionStorage.setItem("showToastAfterReload", "true");
                 storeTockenInLS(responseData.token);
-                // window.location.reload();
                 setUser({ username: "", email: "", phone: "", password: "" });
                 navigate("/");
+                window.location.reload();
             } else {
                 toast.error(responseData.extraDetails ? responseData.extraDetails[0] : responseData.message);
             }

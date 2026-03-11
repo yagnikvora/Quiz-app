@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./css/Admin.css"
 import { toast } from "react-toastify";
 
 export const AdminUsers = () => {
     const [users, setUsers] = useState([]);
 
-    const { authorizationToken } = useAuth();
+    const { authorizationToken , user } = useAuth();
 
     const getAllUsersData = async () => {
         try {
@@ -72,14 +72,14 @@ export const AdminUsers = () => {
                         <tbody>
                             {users.map((curUser, index) => {
                                 return (
-                                    <tr key={index}>
+                                    <tr key={index} className="">
                                         <td>{curUser.username}</td>
                                         <td>{curUser.email}</td>
                                         <td>{curUser.phone}</td>
-                                        <td>
+                                        <td className="p-2">
                                             <Link className="btn btn-warning " to={`/admin/users/edit/${curUser._id}`}>Edit</Link>
                                         </td>
-                                        <td>
+                                        <td className="p-2">
                                             <Link
                                                 className="btn btn-primary"
                                                 onClick={() => deleteUser(curUser._id)}

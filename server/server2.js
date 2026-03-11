@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 //     credentials: true,
 // };
 const app = express();
-const URI = "mongodb+srv://23010101661:yagnik123@yagnik.sc2rkml.mongodb.net/Quiz?retryWrites=true&w=majority";
+const URI = "mongodb+srv://23010101661:Vyr%402956@yagnik.sc2rkml.mongodb.net/Quiz?retryWrites=true&w=majority";
 // app.use(cors());
 // Enable CORS for specific origin
 app.use(cors({ 

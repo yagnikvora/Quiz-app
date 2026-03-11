@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 let data = [];
 const Quizselection = () => {
     const [subject, setSubject] = useState('java');
-    const [numQuestions, setNumQuestions] = useState(0);
+    const [numQuestions, setNumQuestions] = useState(5);
     // const [data , setData] = useState([]);
     const navigate = useNavigate();
 
@@ -45,7 +45,11 @@ const Quizselection = () => {
                     e.preventDefault();
                     if (parseInt(numQuestions) <= 4) {
                         toast.warn("No of Quiestions must be more than 5");
-                    } else {
+                    } 
+                    else if(parseInt(numQuestions) > 30){
+                        toast.warn("No of Quiestions must be less than or equal to 30");
+                    }
+                    else {
                         await fetch(url)
                             .then(res => res.json())
                             .then(res => {
